@@ -101,7 +101,20 @@ apollo {
     get_translation_code = System.getenv("WEBAPOLLO_TRANSLATION_TABLE") ? System.getenv("WEBAPOLLO_TRANSLATION_TABLE").toInteger() : 1
 
     fa_to_twobit_exe = "/usr/local/bin/faToTwoBit" // automatically loaded // https://genome.ucsc.edu/goldenPath/help/blatSpec.html
-
+    sequence_search_tools = [
+        blat_nuc: [
+          search_exe: "/usr/local/bin/blat",
+          search_class: "org.bbop.apollo.sequence.search.blat.BlatCommandLineNucleotideToNucleotide",
+          name: "Blat nucleotide",
+          params: ""
+        ],
+        blat_prot: [
+          search_exe: "/usr/local/bin/blat",
+          search_class: "org.bbop.apollo.sequence.search.blat.BlatCommandLineProteinToNucleotide",
+          name: "Blat protein",
+          params: ""
+        ]
+      ]
     // TODO: should come from config or via preferences database
     splice_donor_sites = System.getenv("WEBAPOLLO_SPLICE_DONOR_SITES") ? System.getenv("WEBAPOLLO_SPLICE_DONOR_SITES").split(",") : ["GT"]
     splice_acceptor_sites = System.getenv("WEBAPOLLO_SPLICE_ACCEPTOR_SITES") ? System.getenv("WEBAPOLLO_SPLICE_ACCEPTOR_SITES").split(",") : ["AG"]
@@ -111,9 +124,9 @@ apollo {
 
     admin {
         username = System.getenv("APOLLO_ADMIN_EMAIL") ?: "admin@local.host"
-        password = System.getenv("APOLLO_ADMIN_PASSWORD") ?: "password"
-        firstName = System.getenv("APOLLO_ADMIN_FIRST_NAME") ?: "Ad"
-        lastName = System.getenv("APOLLO_ADMIN_LAST_NAME") ?: "min"
+        password = System.getenv("APOLLO_ADMIN_PASSWORD") ?: "4Yy@xWG7i8Nm"
+        firstName = System.getenv("APOLLO_ADMIN_FIRST_NAME") ?: "Admin"
+        lastName = System.getenv("APOLLO_ADMIN_LAST_NAME") ?: "User"
     }
     authentications = [
         [
@@ -150,11 +163,11 @@ jbrowse {
         HideTrackLabels {
             included = true
         }
-//        GCContent{
-//            git = 'https://github.com/cmdcolin/GCContent'
-//            branch = 'master'
-//            alwaysRecheck = "true"
-//            alwaysPull = "true"
-//        }
+        GCContent{
+            git = 'https://github.com/cmdcolin/GCContent'
+            branch = 'master'
+            alwaysRecheck = "true"
+            alwaysPull = "true"
+        }
     }
 }
